@@ -61,7 +61,8 @@ process_csv_images() {
             echo "Delorean Image: ${delorean_image}"
 
             #Update image reference in csv to use delorean registry
-            sed -i "s|${image}|${delorean_image}|g" $1
+            sed -i.bak "s|${image}|${delorean_image}|g" $1
+            rm $1.bak
 
             #Add the image mapping if it doesn't already exist
             osbs_delorean_map="${osbs_image} ${delorean_image}"
